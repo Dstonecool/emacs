@@ -15,13 +15,6 @@
     (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "��Ȫ��ȿ�΢�׺�" :foundry "outline" :slant normal :weight normal :height 102 :width normal)))))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,17 +26,18 @@
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
- '(custom-enabled-themes (quote (leuven)))
+ '(custom-enabled-themes (quote (spacemacs-dark)))
  '(custom-safe-themes
    (quote
     ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "3f44e2d33b9deb2da947523e2169031d3707eec0426e78c7b8a646ef773a2077" default)))
  '(fci-rule-color "#383838")
+ '(global-display-line-numbers-mode t)
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (cmake-ide neotree eproject cmake-project cmake-mode flymake-go ztree go-gopath go-dlv treemacs company-go company go-mode evil cnfonts spacemacs-theme zenburn-theme)))
+    (autopair evil-surround company-go cmake-ide neotree eproject cmake-project cmake-mode flymake-go ztree go-gopath go-dlv treemacs company go-mode evil cnfonts spacemacs-theme zenburn-theme)))
  '(pdf-view-midnight-colors (quote ("#655370" . "#fbf8ef")))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -87,3 +81,21 @@
 (require 'evil)
 (evil-mode 1)
 
+(require 'autopair)
+(autopair-global-mode) ;; enable autopair in all buffers
+
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
+
+;; make both fringes 4 pixels wide
+(fringe-mode 4)
+(toggle-scroll-bar -1)
+
+(require 'cnfonts)
+
+;; 让 cnfonts 随着 Emacs 自动生效。
+(cnfonts-enable)
+
+;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+(cnfonts-set-spacemacs-fallback-fonts)
